@@ -1,0 +1,16 @@
+version: 0.2
+
+phases:
+  install:
+    commands:
+      - echo "No installation needed for static HTML"
+  build:
+    commands:
+      - echo "Building the static HTML website..."
+  post_build:
+    commands:
+      - echo "Deploying website to S3..."
+      - aws s3 sync . s3://html-demo-bucket --delete
+artifacts:
+  files:
+    - '**/*'
